@@ -10,6 +10,11 @@ Extract tar.gz
 tar -zxvf /tmp/backup.tar.gz
 ```
 
+Extract gz
+```console
+gunzip backup.gz 
+```
+
 remove folder with files **⚠️be careful⚠️**
 ```console
 rm -rfv /var/www/html/var/
