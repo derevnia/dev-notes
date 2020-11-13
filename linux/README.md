@@ -15,4 +15,12 @@ remove folder with files **⚠️be careful⚠️**
 rm -rfv /var/www/html/var/
 ```
 
-
+create absolute symlink
+```console
+ln -s /souce/full/path/folder /link/full/path/new_folder
+```
+create relative symlink
+```console
+cd /full/path/folder 
+ln -s ../path/source link_folder
+```
