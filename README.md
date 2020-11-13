@@ -1,4 +1,4 @@
-# New server CentOS 7 install commdands
+# New server CentOS 7 install commands
 
 ```console
 nginx+apache+mariadb+postgresql+git+zabbix
