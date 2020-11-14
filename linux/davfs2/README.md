@@ -1,40 +1,37 @@
 # davfs2
 
-Install
+#### Install
 ```console
-[root@localhost]# yum update
-[root@localhost]# yum install epel-release
-[root@localhost]# yum install davfs2
+yum update
+yum install epel-release
+yum install davfs2
 ```
 
-config
-add to file
+#### config
+> https://example.com/remote.php/webdav/ LOGIN PASSWORD
 
-**https://example.com/remote.php/webdav/ LOGIN PASSWORD**
 ```console
 nano /etc/davfs2/secrets
 ```
 
-dir
+#### dir
 ```console
 mkdir /mnt/example.com
 ```
 
-mount
+#### mount
 ```console
 mount -t davfs https://example.com/remote.php/webdav/ /mnt/example.com
 ```
 
-unmount
+#### unmount
 ```console
 umount /mnt/example.com
 ```
 
-add to fstab
+#### fstab
 
-```console
-https://example.com/remote.php/webdav/ /mnt/example.com davfs   defaults,_netdev    0   0
-```
+> https://example.com/remote.php/webdav/ /mnt/example.com davfs   defaults,_netdev    0   0*
 
 ```console
 nano /etc/fstab
