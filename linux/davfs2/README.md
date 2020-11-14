@@ -31,7 +31,7 @@ umount /mnt/example.com
 
 #### fstab
 
-> https://example.com/remote.php/webdav/ /mnt/example.com davfs   defaults,_netdev    0   0*
+> https://example.com/remote.php/webdav/ /mnt/example.com davfs   defaults,_netdev    0   0
 
 ```console
 nano /etc/fstab
