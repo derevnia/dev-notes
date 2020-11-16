@@ -110,7 +110,7 @@ cd /tmp
 
 ### start
 ```console
-systemctl start postgresql-12
+systemctl start postgresql-13
 ```
 
 ### remove old
