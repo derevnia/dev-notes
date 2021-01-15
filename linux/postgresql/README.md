@@ -1,3 +1,31 @@
+# install postgresql 13 (CentOS 8)
+
+### repo
+```console
+yum -y install https://download.postgresql.org/pub/repos/yum/reporpms/EL-8-x86_64/pgdg-redhat-repo-latest.noarch.rpm
+```
+
+### install
+```console
+yum -y install epel-release yum-utils
+yum-config-manager --enable pgdg13
+yum install postgresql13-server postgresql13
+```
+### init
+```console
+/usr/pgsql-13/bin/postgresql-13-setup initdb
+```
+
+### autostart
+```console
+systemctl enable --now postgresql-13
+```
+
+### start
+```console
+systemctl start postgresql-13
+```
+
 # install postgresql 12 (CentOS 7)
 
 ### repo
