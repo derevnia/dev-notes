@@ -20,6 +20,11 @@ remove folder with files **⚠️be careful⚠️**
 rm -rfv /var/www/html/var/
 ```
 
+copy files from folder source to backup folder
+```console
+cp -R /source/* /destination
+```
+
 create absolute symlink
 ```console
 ln -s /souce/full/path/folder /link/full/path/new_folder
