@@ -69,3 +69,24 @@ main instruction https://www.zabbix.com/ru/integrations/postgresql or https://gi
 ```console
 ln -s /usr/pgsql-12/bin/pg_isready /usr/bin/pg_isready
 ```
+
+# Setup nginx
+main instruction https://git.zabbix.com/projects/ZBX/repos/zabbix/browse/templates/app/nginx_agent
+
+Setup [ngx_http_stub_status_module](https://nginx.ru/en/docs/http/ngx_http_stub_status_module.html).
+Test availability of http_stub_status module with `nginx -V 2>&1 | grep -o with-http_stub_status_module`.
+
+- Example configuration of Nginx:
+```text
+location = /basic_status {
+    stub_status;
+    allow 127.0.0.1;
+    allow ::1;
+    deny all;
+}
+```
+
+- change macros on zabbix server for this host
+```text
+{$NGINX.STUB_STATUS.HOST} with value 127.0.0.1
+```
