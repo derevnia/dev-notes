@@ -28,3 +28,44 @@ PSK: get string from zabbix_agentd.psk
 ```console
 service zabbix-agent restart
 ```
+
+# Setup Postgresql
+main instruction https://www.zabbix.com/ru/integrations/postgresql or https://git.zabbix.com/projects/ZBX/repos/zabbix/browse/templates/db/postgresql
+
+1. Install Zabbix agent and create a read-only `zbx_monitor` user with proper access to your PostgreSQL server.
+
+    For PostgreSQL version 10 and above:
+
+    ```sql
+    CREATE USER zbx_monitor WITH PASSWORD '<PASSWORD>' INHERIT;
+    GRANT pg_monitor TO zbx_monitor;
+    ```
+
+    For PostgreSQL version 9.6 and below:
+
+    ```sql
+    CREATE USER zbx_monitor WITH PASSWORD '<PASSWORD>';
+    GRANT SELECT ON pg_stat_database TO zbx_monitor;
+
+    -- To collect WAL metrics, the user must have a `superuser` role.
+    ALTER USER zbx_monitor WITH SUPERUSER;
+    ```
+
+2. Copy `postgresql/` to Zabbix agent home directory `/var/lib/zabbix/`. The `postgresql/` directory contains the files needed to obtain metrics from PostgreSQL.
+
+3. Copy `template_db_postgresql.conf` to Zabbix agent configuration directory `/etc/zabbix/zabbix_agentd.d/` and restart Zabbix agent service.
+
+4. Edit `pg_hba.conf` to allow connections from Zabbix agent https://www.postgresql.org/docs/current/auth-pg-hba-conf.html.
+
+    Add rows (for example):
+
+    ```bash
+    host all zbx_monitor 127.0.0.1/32 trust
+    host all zbx_monitor 0.0.0.0/0 md5
+    host all zbx_monitor ::0/0 md5
+    ```
+
+- if everything works but status of postgresql is down
+```console
+ln -s /usr/pgsql-12/bin/pg_isready /usr/bin/pg_isready
+```
