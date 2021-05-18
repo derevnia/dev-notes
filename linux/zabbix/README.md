@@ -90,3 +90,35 @@ location = /basic_status {
 ```text
 {$NGINX.STUB_STATUS.HOST} with value 127.0.0.1
 ```
+
+# Setup fail2ban
+main instruction [zabbix](https://share.zabbix.com/cat-app/firewall/fail2ban) [github](https://github.com/hermanekt/zabbix-fail2ban-discovery-)
+
+## Install template on Zabbix server
+
+## Create template for fail2ban on Zabbix agent
+/etc/zabbix/zabbix_agentd.d/template_fail2ban.conf
+```console
+tee /etc/zabbix/zabbix_agentd.d/template_fail2ban.conf<<EOF  
+UserParameter=fail2ban.status[*],fail2ban-client status '$1' | grep 'Currently banned:' | grep -E -o '[0-9]+'
+UserParameter=fail2ban.discovery,fail2ban-client status | grep 'Jail list:' | sed -e 's/^.*:\W\+//' -e 's/\(\(\w\|-\)\+\)/{"{#JAIL}":"\1"}/g' -e 's/.*/{"data":[\0]}/'
+EOF
+```
+
+## Install in file /etc/sudoers add string (after «root ALL=(ALL:ALL) ALL»):
+```text
+zabbix  ALL=(ALL) NOPASSWD: /usr/bin/fail2ban-client
+```
+
+## Restart Zabbix agent
+```console
+systemctl restart zabbix-agent
+```
+
+## Create triggers if you needed
+
+## Selinux rules probably must be updated
+```console
+ausearch -c 'fail2ban-client' --raw | audit2allow -M my-fail2banclient
+semodule -X 300 -i my-fail2banclient.pp
+```
