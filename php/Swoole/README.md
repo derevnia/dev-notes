@@ -7,7 +7,7 @@ dnf install php-devel php-pear curl-devel
 ```
 
 ### install swoole
-(everywhere yes instead mysqlnd)
+(everywhere yes except mysqlnd)
 ```console
 pecl install swoole
 ```
