@@ -20,7 +20,6 @@ extension=swoole
 ```
 
 ### restart apache
-(create file /etc/php.d/99-swoole.ini with content)
 ```console
 httpd -t
 service httpd restart
