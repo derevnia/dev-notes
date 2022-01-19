@@ -7,9 +7,10 @@ dnf -y install https://download.postgresql.org/pub/repos/yum/reporpms/EL-8-x86_6
 
 ### install
 ```console
-yum -y install epel-release yum-utils
+dnf -y install epel-release yum-utils
 yum-config-manager --enable pgdg13
 yum install postgresql13-server postgresql13
+when error: All matches were filtered out by modular filtering for argument - (dnf -qy module disable postgresql)
 ```
 ### init
 ```console
