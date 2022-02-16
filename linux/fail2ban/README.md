@@ -2,7 +2,7 @@
 
 ## CentOS 8
 ```console
-dnf install fail2ban 
+dnf install epel-release fail2ban -y
 ```
 
 ## Ubuntu 20.04
