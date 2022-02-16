@@ -1,3 +1,27 @@
+# install postgresql 14 (CentOS 8/CentOS Stream 8)
+
+### repo
+```console
+dnf -y install https://download.postgresql.org/pub/repos/yum/reporpms/EL-8-x86_64/pgdg-redhat-repo-latest.noarch.rpm
+```
+
+### install
+```console
+dnf -y install epel-release yum-utils
+yum-config-manager --enable pgdg14
+dnf -qy module disable postgresql
+dnf -y install postgresql14-server postgresql14
+```
+### init
+```console
+/usr/pgsql-13/bin/postgresql-14-setup initdb
+```
+
+### autostart
+```console
+systemctl enable --now postgresql-14
+```
+
 # install postgresql 13 (CentOS 8)
 
 ### repo
