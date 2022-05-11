@@ -14,7 +14,7 @@ dnf -y install postgresql14-server postgresql14
 ```
 ### init
 ```console
-/usr/pgsql-13/bin/postgresql-14-setup initdb
+/usr/pgsql-14/bin/postgresql-14-setup initdb
 ```
 
 ### autostart
