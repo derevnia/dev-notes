@@ -1,3 +1,12 @@
+# Install Zabbix 6 CentOS Stream 8
+
+```console
+rpm -Uvh https://repo.zabbix.com/zabbix/6.0/rhel/8/x86_64/zabbix-release-6.0-1.el8.noarch.rpm
+dnf clean all
+dnf -y install zabbix-agent
+```
+
+
 # Encryption setting (PSK) Zabbix Agent
 
 - Settings `/etc/zabbix/zabbix_agentd.conf`
