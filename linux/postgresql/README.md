@@ -12,6 +12,19 @@ yum-config-manager --enable pgdg14
 dnf -qy module disable postgresql
 dnf -y install postgresql14-server postgresql14
 ```
+
+### (optional) Install to another directory
+```console
+mkdir -p /mnt/sdb/pgsql
+chown -R postgres:postgres /mnt/sdb/pgsql
+systemctl edit postgresql-14.service
+// add this lines
+[Service]
+Environment=PGDATA=/mnt/sdc/pgsql/14/data/
+// reload
+systemctl daemon-reload
+```
+
 ### init
 ```console
 /usr/pgsql-14/bin/postgresql-14-setup initdb
