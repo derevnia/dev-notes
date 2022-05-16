@@ -79,6 +79,9 @@ main instruction https://www.zabbix.com/ru/integrations/postgresql or https://gi
 ln -s /usr/pgsql-12/bin/pg_isready /usr/bin/pg_isready
 ```
 
+- if get error like this `psql: error: /var/lib/zabbix/postgresql/pgsql.wal.stat.sql: Permission denied`
+switch off selinux in /etc/selinux/config and reboot
+
 # Setup nginx
 main instruction https://git.zabbix.com/projects/ZBX/repos/zabbix/browse/templates/app/nginx_agent
 
