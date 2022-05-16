@@ -43,6 +43,10 @@ module_hotfixes=true
 EOF
 ```
 
+##### nginx (generate dhparam.pem)
+```console
+openssl dhparam -out /etc/pki/tls/dhparam.pem 4096
+```
 ##### apache + itk
 ```console
 yum install httpd 
