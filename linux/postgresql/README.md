@@ -20,7 +20,7 @@ chown -R postgres:postgres /mnt/sdb/pgsql
 systemctl edit postgresql-14.service
 // add this lines
 [Service]
-Environment=PGDATA=/mnt/sdc/pgsql/14/data/
+Environment=PGDATA=/mnt/sdb/pgsql/14/data/
 // reload
 systemctl daemon-reload
 ```
