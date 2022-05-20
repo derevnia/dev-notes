@@ -188,3 +188,12 @@ cd /tmp
 ./delete_old_cluster.sh
 ```
 
+
+### Create user with database
+```console
+su postgres
+createuser --interactive --pwprompt
+psql
+CREATE DATABASE db_name WITH OWNER database_user;
+GRANT ALL PRIVILEGES ON DATABASE db_name to mgs_user;
+```
