@@ -29,8 +29,8 @@ openssl rand -hex 32 2>&1 | tee /etc/zabbix/security/psk/zabbix_agentd.psk
 
 - Change permissions
 ```console
-chown zabbix:zabbix /etc/zabbix/security/psk/zabbix_proxy.psk 
-chmod 600 /etc/zabbix/security/psk/zabbix_proxy.psk
+chown zabbix:zabbix /etc/zabbix/security/psk/zabbix_agentd.psk 
+chmod 600 /etc/zabbix/security/psk/zabbix_agentd.psk
 ```
 - Change settings on zabbix server on Encryption tab 
 Connections to host: PSK
