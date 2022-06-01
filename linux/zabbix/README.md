@@ -95,11 +95,35 @@ Test availability of http_stub_status module with `nginx -V 2>&1 | grep -o with-
 
 - Example configuration of Nginx:
 ```text
-location = /basic_status {
+###redirect !https
+server {
+  listen 80 default_server;
+  listen [::]:80 default_server;
+  # Apache
+  location /server-status {
+    proxy_pass http://127.0.0.1:8080;
+    allow 127.0.0.1;
+    allow ::1;
+    deny all;
+  }
+  # Nginx
+  location = /basic_status {
     stub_status;
     allow 127.0.0.1;
     allow ::1;
     deny all;
+  }
+  # Enable php-fpm status page
+  location ~ ^/(status|ping)$ {
+    allow 127.0.0.1;
+    allow ::1;
+    deny all;
+    
+    fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+    fastcgi_index index.php;
+    include fastcgi_params;
+    fastcgi_pass unix:/run/php-fpm/www.sock;
+  }
 }
 ```
 
