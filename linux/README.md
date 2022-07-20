@@ -34,3 +34,14 @@ create relative symlink
 cd /full/path/folder 
 ln -s ../path/source link_folder
 ```
+
+Add time and increase file size `.bash_history` and save commands immediately edit file `.bashrc` for every user
+```console
+# Files sizes
+HISTSIZE=500000
+HISTFILESIZE=10000000
+# Save immediately
+export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
+# Add time for every command
+export HISTTIMEFORMAT='%F %T '
+```
