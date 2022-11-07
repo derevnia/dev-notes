@@ -12,7 +12,7 @@ firewall-cmd --reload
 # Show rules
 firewall-cmd --list-all --zone=sshd-access
 # Remove default ssh port
-firewall-cmd --permanent --zone=public --remove-ssh=ssh
+firewall-cmd --permanent --zone=public --remove-service=ssh
 # Reload rules
 firewall-cmd --reload
 # Show all rules
