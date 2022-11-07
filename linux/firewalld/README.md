@@ -17,4 +17,6 @@ firewall-cmd --permanent --zone=public --remove-service=ssh
 firewall-cmd --reload
 # Show all rules
 firewall-cmd --list-all-zones
+# Show all active zones
+firewall-cmd --get-active-zones
 ```
