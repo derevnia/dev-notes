@@ -20,3 +20,9 @@ firewall-cmd --list-all-zones
 # Show all active zones
 firewall-cmd --get-active-zones
 ```
+
+## Block ip for example OpenVPN
+```console
+firewall-cmd --permanent --add-rich-rule="rule family='ipv4' source address='10.8.0.1/24' reject"
+firewall-cmd --reload
+```
