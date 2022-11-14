@@ -94,8 +94,8 @@ Setup [ngx_http_stub_status_module](https://nginx.ru/en/docs/http/ngx_http_stub_
 Test availability of http_stub_status module with `nginx -V 2>&1 | grep -o with-http_stub_status_module`.
 
 - Example configuration of Nginx:
-```text
-###redirect !https
+```console
+#redirect !https
 server {
   listen 80 default_server;
   listen [::]:80 default_server;
