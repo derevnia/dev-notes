@@ -97,6 +97,8 @@ Test availability of http_stub_status module with `nginx -V 2>&1 | grep -o with-
 ```console
 #redirect !https
 server {
+  server_name  _ localhost;
+
   listen 80 default_server;
   listen [::]:80 default_server;
   # Apache
@@ -107,7 +109,7 @@ server {
     deny all;
   }
   # Nginx
-  location = /basic_status {
+  location /basic_status {
     stub_status;
     allow 127.0.0.1;
     allow ::1;
