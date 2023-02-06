@@ -13,4 +13,4 @@ dnsmasq --test # check config
 service dnsmasq restart # apply changes in dnsmasq.hosts
 ```
 
-## Copy [a relative link](dnsmasq.conf) to /etc/dnsmasq.d/dnsmasq.conf
+## Copy [dnsmasq.conf](dnsmasq.conf) to /etc/dnsmasq.d/dnsmasq.conf
