@@ -23,3 +23,10 @@ EOF
 ```console
 systemctl enable --now fail2ban
 ```
+
+# Unban ip
+```console
+fail2ban-client -i
+status sshd
+set sshd unbanip 127.0.0.1
+```
