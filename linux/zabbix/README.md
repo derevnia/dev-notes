@@ -165,3 +165,26 @@ systemctl restart zabbix-agent
 ausearch -c 'fail2ban-client' --raw | audit2allow -M my-fail2banclient
 semodule -X 300 -i my-fail2banclient.pp
 ```
+
+## Zabbix Agent 2
+[source](https://github.com/hermanekt/zabbix-fail2ban-discovery-)
+
+## Grant access to Fail2Ban
+Fail2ban works only with root by default. We need to grant permission to Zabbix to access the Fail2ban by adding this 2 lines to /etc/sudoers:
+```txt
+zabbix ALL=NOPASSWD: /usr/bin/fail2ban-client status
+zabbix ALL=NOPASSWD: /usr/bin/fail2ban-client status *
+```
+## Edit /etc/zabbix/zabbix_agent2.conf to avoid permission error
+# Include configuration files for plugins
+Include=/etc/zabbix/zabbix_agent2.d/plugins.d/*.conf
+
+## Restart
+```console
+systemctl restart zabbix-agent2
+```
+
+## Check
+```console
+sudo -u zabbix zabbix_agent2 -c /etc/zabbix/zabbix_agent2.conf -t fail2ban.status['sshd']
+```
