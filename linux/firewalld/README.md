@@ -20,7 +20,14 @@ firewall-cmd --list-all-zones
 # Show all active zones
 firewall-cmd --get-active-zones
 ```
-## add service
+
+## Block ip for example OpenVPN
+```console
+firewall-cmd --permanent --add-rich-rule="rule family='ipv4' source address='10.8.0.1/24' reject"
+firewall-cmd --reload
+```
+
+## Common commands
 ```console
 # show all rules
 firewall-cmd --list-all
@@ -31,8 +38,4 @@ firewall-cmd --permanent --zone=public --add-service=https
 # apply new config
 firewall-cmd --reload
 ```
-## Block ip for example OpenVPN
-```console
-firewall-cmd --permanent --add-rich-rule="rule family='ipv4' source address='10.8.0.1/24' reject"
-firewall-cmd --reload
-```
+
