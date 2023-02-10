@@ -15,4 +15,17 @@ ufw allow ssh
 ufw allow http
 # allow 443/tcp
 ufw allow https
+# deny http 
+ufw deny http
+
+# show rules
+ufw status numbered
+# delete rule
+ufw delete 2
+# enable
+ufw enable
+# disable
+ufw disable
+# reset to default
+ufw reset
 ```
