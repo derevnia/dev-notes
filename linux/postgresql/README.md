@@ -200,3 +200,9 @@ psql
 CREATE DATABASE db_name WITH OWNER database_user;
 GRANT ALL PRIVILEGES ON DATABASE db_name to database_user;
 ```
+
+### Enable extended logging
+```txt
+log_statement = 'all'
+log_line_prefix = '%m [%p] %u %h ' #user in logs
+```
