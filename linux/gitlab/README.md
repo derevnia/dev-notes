@@ -22,3 +22,19 @@ chown user:user /home/user/.ssh/authorized_keys
 ## GitLab add
 
 Add variable `SSH_PRIVATE_KEY` in `Settings->CI/CD->Variables` with content of your `id_ed25519`
+
+
+## Install gitlab-runner (CentOS)
+
+```console
+curl -L https://packages.gitlab.com/install/repositories/runner/gitlab-runner/script.rpm.sh | sudo bash
+dnf install gitlab-runner
+```
+## Setup gitlab-runner
+
+```console
+gitlab-runner register \
+    --url "https://gitlab.com" \
+    --registration-token "YOUR_TOKEN" \
+    --description "PROJECT_DESCRIPTION"
+```
