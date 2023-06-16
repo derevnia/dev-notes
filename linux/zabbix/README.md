@@ -137,6 +137,12 @@ server {
 # Setup fail2ban
 main instruction [zabbix](https://share.zabbix.com/cat-app/firewall/fail2ban) [github](https://github.com/hermanekt/zabbix-fail2ban-discovery-)
 
+## Install fail2ban CentOS 9
+```console
+dnf install -y epel-release
+dnf install -y fail2ban
+systemctl enable --now fail2ban
+```
 ## Install template on Zabbix server
 
 ## Create template for fail2ban on Zabbix agent
