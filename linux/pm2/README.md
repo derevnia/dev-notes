@@ -6,6 +6,7 @@ chown user:user /opt/pm2daemon
 dnf module install nodejs:18
 npm i -g pm2
 pm2 install pm2-logrotate
+pm2 startup
 ```
 
 add config for every user `/home/user/.bashrc`
