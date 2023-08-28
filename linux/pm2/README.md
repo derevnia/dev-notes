@@ -26,3 +26,8 @@ export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 # Add time for every command
 export HISTTIMEFORMAT='%F %T '
 ```
+
+# example pm2 start services
+```console
+pm2 start ecosystem.config.js --env production --only Webscoket
+```
