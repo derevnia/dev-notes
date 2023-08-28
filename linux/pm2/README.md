@@ -15,3 +15,14 @@ add config for every user `/home/user/.bashrc`
 # PM2 environment
 export PM2_HOME=/opt/pm2daemon
 ```
+
+# optional for history config
+```console
+# Files sizes
+HISTSIZE=500000
+HISTFILESIZE=10000000
+# Save immediately
+export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
+# Add time for every command
+export HISTTIMEFORMAT='%F %T '
+```
