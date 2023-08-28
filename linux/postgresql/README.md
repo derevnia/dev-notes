@@ -38,6 +38,15 @@ systemctl daemon-reload
 systemctl enable --now postgresql-14
 ```
 
+### Change dir for already installed db
+
+```console
+rsync -av /var/lib/pgsql/ /new_dir/pgsql/
+mv /var/lib/pgsql /var/lib/pgsql_BAK
+ln -s /new_dir/pgsql /var/lib/pgsql
+rm -rf /var/lib/pgsql_BAK
+```
+
 # install postgresql 13 (CentOS 8)
 
 ### repo
