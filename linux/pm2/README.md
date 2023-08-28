@@ -3,7 +3,8 @@
 ```console
 mkdir /opt/pm2daemon
 chown user:user /opt/pm2daemon
-dnf module install nodejs:18
+dnf module install nodejs:18 # or
+dnf module install nodejs:20 # or
 npm i -g pm2
 pm2 install pm2-logrotate
 pm2 startup
