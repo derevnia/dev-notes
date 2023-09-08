@@ -1,7 +1,8 @@
 # Install Zabbix 6 CentOS Stream 8
 
 ```console
-rpm -Uvh https://repo.zabbix.com/zabbix/6.0/rhel/8/x86_64/zabbix-release-6.0-1.el8.noarch.rpm
+rpm -Uvh https://repo.zabbix.com/zabbix/6.0/rhel/8/x86_64/zabbix-release-6.0-1.el8.noarch.rpm # static
+rpm -Uvh https://repo.zabbix.com/zabbix/6.0/rhel/$(rpm -E %{rhel})/x86_64/zabbix-release-6.0-4.el$(rpm -E %{rhel}).noarch.rpm # dynamic (work with CentOS 8 and 9)
 dnf clean all
 dnf -y install zabbix-agent
 ```
