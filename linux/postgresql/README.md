@@ -215,3 +215,13 @@ GRANT ALL PRIVILEGES ON DATABASE db_name to database_user;
 log_statement = 'all'
 log_line_prefix = '%m [%p] %u %h ' #user in logs
 ```
+
+### Postgis CentOS 9 (PostgreSQL 15)
+```console
+dnf config-manager --set-enabled crb
+dnf -y install postgis34_15
+su postgres
+psql
+\c database_name
+create extension postgis;
+```
