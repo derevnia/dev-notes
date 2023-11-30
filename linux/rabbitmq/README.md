@@ -8,3 +8,10 @@ update-crypto-policies --set DEFAULT # return back
 rabbitmq-plugins enable rabbitmq_management # enabling ui plugin
 systemctl enable --now rabbitmq-server
 ```
+Default creadentials: guest/guest
+
+## Add/Update user
+```cli
+rabbitmqctl add_user Admin YOUR_SUPER_SECRET_PASS
+rabbitmqctl set_user_tags Admin administrator
+```
