@@ -21,6 +21,6 @@ dnf -y install nginx
 firewall-cmd --permanent --add-service=http
 firewall-cmd --permanent --add-service=https
 
-openssl dhparam -out /etc/pki/tls/dhparam.pem 4096
+mkdir -p /etc/pki/tls/ && openssl dhparam -out /etc/pki/tls/dhparam.pem 4096
 systemctl enable --now nginx
 ```
