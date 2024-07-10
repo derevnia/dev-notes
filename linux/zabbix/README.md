@@ -25,6 +25,7 @@ mkdir -p /etc/zabbix/security/psk
 
 - Generate psk
 ```console
+mkdir -p /etc/zabbix/security/psk/ && openssl rand -hex 32 2>&1 | tee /etc/zabbix/security/psk/zabbix_agentd.psk
 openssl rand -hex 32 2>&1 | tee /etc/zabbix/security/psk/zabbix_agentd.psk
 ```
 
