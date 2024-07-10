@@ -15,12 +15,22 @@ EOL
 
 ```console
 dnf module disable nginx:*
+```
+```console
 dnf module enable nginx:1.20
+```
+```console
 dnf -y install nginx
-
+```
+```console
 firewall-cmd --permanent --add-service=http
+```
+```console
 firewall-cmd --permanent --add-service=https
-
+```
+```console
 mkdir -p /etc/pki/tls/ && openssl dhparam -out /etc/pki/tls/dhparam.pem 4096
+```
+```console
 systemctl enable --now nginx
 ```
