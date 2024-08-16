@@ -33,3 +33,8 @@ EOL
 ```console
 sed -i '/^[^#]/ s/^/#/' /etc/apt/sources.list
 ```
+
+# Обновление с 1.7 до 1.8
+```console
+apt-get dist-upgrade
+```
