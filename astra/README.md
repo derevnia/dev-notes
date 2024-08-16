@@ -38,3 +38,8 @@ sed -i '/^[^#]/ s/^/#/' /etc/apt/sources.list
 ```console
 apt-get dist-upgrade
 ```
+
+# Fix error `/usr/bin/perl: error while loading shared libraries: libcrypt.so.1: cannot open shared object file: No such file or directory`
+```console
+cd $(mktemp -d) && apt -y download libcrypt1 && dpkg-deb -x libcrypt1_*.deb . && cp -ra lib/* /lib/ && apt -y --fix-broken install
+```
