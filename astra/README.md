@@ -13,6 +13,7 @@ ifup -a --no-act ; echo "status: $?"
 # Выдать права пользователю root и его активация
 ```console
 sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config && systemctl restart sshd
+```
 ```console
 gpasswd -a root astra-admin && pdpl-user -i 63 root && passwd
 ```
