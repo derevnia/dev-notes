@@ -17,3 +17,19 @@ sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd
 ```console
 gpasswd -a root astra-admin && pdpl-user -i 63 root && passwd
 ```
+
+
+# Добавление репозиториев Astra Linux 1.8
+```console
+tee /etc/apt/sources.list.d/astra_1.8.list > /dev/null <<EOL
+# Основной репозиторий, включающий актуальное оперативное или срочное обновление
+deb https://dl.astralinux.ru/astra/stable/1.8_x86-64/main-repository/     1.8_x86-64 main contrib non-free non-free-firmware
+# Расширенный репозиторий, соответствующий актуальному оперативному обновлению
+deb https://dl.astralinux.ru/astra/stable/1.8_x86-64/extended-repository/ 1.8_x86-64 main contrib non-free non-free-firmware
+EOL
+```
+
+# Закомментировать все стандартные репозитории Astra Linux
+```console
+sed -i '/^[^#]/ s/^/#/' /etc/apt/sources.list
+```
