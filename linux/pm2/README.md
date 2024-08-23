@@ -16,6 +16,13 @@ add config for every user `/home/user/.bashrc`
 export PM2_HOME=/opt/pm2daemon
 ```
 
+```console
+su user
+pm2 startup
+usermod -a -G pm2 user
+chmod 664 /opt/pm2daemon/pm2.log
+```
+
 # optional for history config
 ```console
 # Files sizes
