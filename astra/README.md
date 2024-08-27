@@ -48,6 +48,13 @@ ln -s /opt/pgpro/std-16/bin/pg_config /usr/bin/pg_config
 apt-get install postgrespro-std-16-contrib
 ```
 
+# osm
+```console
+cd /home/osm && wget https://planet.openstreetmap.org/pbf/planet-latest.osm.pbf
+apt install debian-archive-keyring
+apt install sudo screen locate libapache2-mod-tile renderd git tar unzip wget bzip2 apache2 lua5.1 mapnik-utils python3-mapnik python3-psycopg2 python3-yaml gdal-bin node-carto osm2pgsql net-tools curl
+```
+
 # postgis postgrepro 16
 ```console
 wget https://postgis.net/stuff/postgis-3.4.3dev.tar.gz && tar -xvzf postgis-3.4.3dev.tar.gz && cd postgis-3.4.3dev
@@ -55,27 +62,79 @@ apt-get install postgrespro-std-16-dev build-essential libgeos-dev libproj-dev g
 ./configure --without-protobuf
 ```
 
-# osm
+## Setup osm db
 ```console
-cd /home/osm && wget https://planet.openstreetmap.org/pbf/planet-latest.osm.pbf
-apt install debian-archive-keyring
-apt install sudo screen locate libapache2-mod-tile renderd git tar unzip wget bzip2 apache2 lua5.1 mapnik-utils python3-mapnik python3-psycopg2 python3-yaml gdal-bin node-carto osm2pgsql net-tools curl
+sudo -u postgres -i
+createuser _renderd
+createdb -E UTF8 -O _renderd gis
+psql
+\c gis
+CREATE EXTENSION postgis;
+CREATE EXTENSION hstore;
+ALTER TABLE geometry_columns OWNER TO _renderd;
+ALTER TABLE spatial_ref_sys OWNER TO _renderd;
+exit
+```
 
+## Download openstreetmap-carto
+```console
+mkdir ~/src
+cd ~/src
+git clone https://github.com/gravitystorm/openstreetmap-carto
+cd openstreetmap-carto
+```
+
+## import data
+```console
 osm2pgsql -U _renderd --slim -H /tmp -d gis --hstore --multi-geometry --number-processes 32 --tag-transform-script /home/osm/src/openstreetmap-carto-master/openstreetmap-carto.lua  --style /home/osm/src/openstreetmap-carto-master/openstreetmap-carto.style -C 200000 /home/osm/planet-latest.osm.pbf
 ```
 
-# osm render cli
+## Generate xml
+```console
+carto project.mml > mapnik.xml
+```
+
+## Create indexes
+```console
+cd ~/src/openstreetmap-carto/
+sudo -u _renderd psql -d gis -f indexes.sql
+```
+
+## Get additional data
+```console
+cd ~/src/openstreetmap-carto/
+mkdir data
+sudo chown _renderd data
+sudo -u _renderd scripts/get-external-data.py
+```
+
+## Get fonts
+```console
+cd ~/src/openstreetmap-carto/
+scripts/get-fonts.sh
+```
+
+## get renderd
+```console
+cd /etc/apache2/conf-available/
+sudo wget https://raw.githubusercontent.com/openstreetmap/mod_tile/python-implementation/etc/apache2/renderd.conf
+sudo a2enconf renderd
+sudo systemctl reload apache2
+mkdir /var/lib/mod_tile && chown _renderd /var/lib/mod_tile && /etc/init.d/renderd restart && /etc/init.d/apache2 restart
+```
+
+## osm render cli
 ```console
 render_list -a -f -n 4 -m osm -z 0 -Z 14
 ```
 
-# osm disable ttl
+## osm disable ttl
 ```console
 touch /var/cache/renderd/tiles/planet-import-complete
 chown _renderd:_renderd /var/cache/renderd/tiles/planet-import-complete 
 ```
 
-# Дополнительные пакеты postgrespro
+## Дополнительные пакеты postgrespro
 apt-get install postgrespro-std-16-contrib
 ```
 
