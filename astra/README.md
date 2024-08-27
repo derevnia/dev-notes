@@ -57,6 +57,7 @@ apt-get install postgrespro-std-16-dev build-essential libgeos-dev libproj-dev g
 
 # osm
 ```console
+cd /home/osm && wget https://planet.openstreetmap.org/pbf/planet-latest.osm.pbf
 apt install debian-archive-keyring
 apt install sudo screen locate libapache2-mod-tile renderd git tar unzip wget bzip2 apache2 lua5.1 mapnik-utils python3-mapnik python3-psycopg2 python3-yaml gdal-bin node-carto osm2pgsql net-tools curl
 
