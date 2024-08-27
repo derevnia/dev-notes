@@ -39,6 +39,45 @@ sed -i '/^[^#]/ s/^/#/' /etc/apt/sources.list
 apt-get dist-upgrade
 ```
 
+# Установка postgres pro 16
+```console
+wget https://repo.postgrespro.ru/std-16/keys/pgpro-repo-add.sh && sh pgpro-repo-add.sh
+/opt/pgpro/std-16/bin/pg-setup initdb && /opt/pgpro/std-16/bin/pg-setup service enable && /opt/pgpro/std-16/bin/pg-setup service start
+ln -s /opt/pgpro/std-16/bin/pg_config /usr/bin/pg_config
+# Дополнительные пакеты
+apt-get install postgrespro-std-16-contrib
+```
+
+# postgis postgrepro 16
+```console
+wget https://postgis.net/stuff/postgis-3.4.3dev.tar.gz && tar -xvzf postgis-3.4.3dev.tar.gz && cd postgis-3.4.3dev
+apt-get install postgrespro-std-16-dev build-essential libgeos-dev libproj-dev gdal-bin libgdal-dev
+./configure --without-protobuf
+```
+
+# osm
+```console
+apt install debian-archive-keyring
+apt install sudo screen locate libapache2-mod-tile renderd git tar unzip wget bzip2 apache2 lua5.1 mapnik-utils python3-mapnik python3-psycopg2 python3-yaml gdal-bin node-carto osm2pgsql net-tools curl
+
+osm2pgsql -U _renderd --slim -H /tmp -d gis --hstore --multi-geometry --number-processes 32 --tag-transform-script /home/osm/src/openstreetmap-carto-master/openstreetmap-carto.lua  --style /home/osm/src/openstreetmap-carto-master/openstreetmap-carto.style -C 200000 /home/osm/planet-latest.osm.pbf
+```
+
+# osm render cli
+```console
+render_list -a -f -n 4 -m osm -z 0 -Z 14
+```
+
+# osm disable ttl
+```console
+touch /var/cache/renderd/tiles/planet-import-complete
+chown _renderd:_renderd /var/cache/renderd/tiles/planet-import-complete 
+```
+
+# Дополнительные пакеты postgrespro
+apt-get install postgrespro-std-16-contrib
+```
+
 # Fix error `/usr/bin/perl: error while loading shared libraries: libcrypt.so.1: cannot open shared object file: No such file or directory`
 ```console
 apt -y install zstd # using gzip instead
