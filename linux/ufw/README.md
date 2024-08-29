@@ -29,3 +29,15 @@ ufw disable
 # reset to default
 ufw reset
 ```
+
+## Add route
+```console
+ip ro ad 172.16.0.1/20 via 172.16.0.3
+ip ro # check routes
+```
+
+## Delete route
+```console
+route -n # check routes
+route del -net 172.16.0.1 gw 172.16.0.3 netmask 255.255.0.0 dev ens192
+```
