@@ -22,7 +22,10 @@ pm2 startup
 usermod -a -G pm2 user
 chmod 664 /opt/pm2daemon/pm2.log
 ```
-
+# With proxy issue
+```console
+npm config set proxy http://login:password@172.16.0.1:80
+```
 # optional for history config
 ```console
 # Files sizes
