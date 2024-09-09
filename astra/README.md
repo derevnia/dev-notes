@@ -6,8 +6,15 @@ vi /etc/network/interfaces
 iface eth0 inet static
         address 172.16.0.1/22
         gateway 172.16.0.2
+        up ip route add 172.16.1.0/24 via 172.16.40.1
+	up ip route add 172.16.3.0/22 via 172.16.40.1
 // check 0 - GOOD/ 1 - BAD
 ifup -a --no-act ; echo "status: $?"
+```
+
+## Apply & restart interface
+```console
+ifdown eth0 && sudo ifup eth0
 ```
 
 # Выдать права пользователю root и его активация
